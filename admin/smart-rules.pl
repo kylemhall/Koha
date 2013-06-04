@@ -128,34 +128,36 @@ elsif ($op eq 'add') {
     my $rentaldiscount = $input->param('rentaldiscount');
     my $opacitemholds = $input->param('opacitemholds') || 0;
     my $overduefinescap = $input->param('overduefinescap') || undef;
+    my $cap_fine_to_replacement_price = $input->param('cap_fine_to_replacement_price') eq 'on';
     $debug and warn "Adding $br, $bor, $itemtype, $fine, $maxissueqty";
 
     my $schema = Koha::Database->new()->schema();
     my $rs = $schema->resultset('Issuingrule');
 
     my $params = {
-        branchcode         => $br,
-        categorycode       => $bor,
-        itemtype           => $itemtype,
-        fine               => $fine,
-        finedays           => $finedays,
-        maxsuspensiondays  => $maxsuspensiondays,
-        firstremind        => $firstremind,
-        chargeperiod       => $chargeperiod,
-        maxissueqty        => $maxissueqty,
-        renewalsallowed    => $renewalsallowed,
-        renewalperiod      => $renewalperiod,
-        norenewalbefore    => $norenewalbefore,
-        auto_renew         => $auto_renew,
-        reservesallowed    => $reservesallowed,
-        issuelength        => $issuelength,
-        lengthunit         => $lengthunit,
-        hardduedate        => $hardduedate,
-        hardduedatecompare => $hardduedatecompare,
-        rentaldiscount     => $rentaldiscount,
-        onshelfholds       => $onshelfholds,
-        opacitemholds      => $opacitemholds,
-        overduefinescap    => $overduefinescap,
+        branchcode                    => $br,
+        categorycode                  => $bor,
+        itemtype                      => $itemtype,
+        fine                          => $fine,
+        finedays                      => $finedays,
+        maxsuspensiondays             => $maxsuspensiondays,
+        firstremind                   => $firstremind,
+        chargeperiod                  => $chargeperiod,
+        maxissueqty                   => $maxissueqty,
+        renewalsallowed               => $renewalsallowed,
+        renewalperiod                 => $renewalperiod,
+        norenewalbefore               => $norenewalbefore,
+        auto_renew                    => $auto_renew,
+        reservesallowed               => $reservesallowed,
+        issuelength                   => $issuelength,
+        lengthunit                    => $lengthunit,
+        hardduedate                   => $hardduedate,
+        hardduedatecompare            => $hardduedatecompare,
+        rentaldiscount                => $rentaldiscount,
+        onshelfholds                  => $onshelfholds,
+        opacitemholds                 => $opacitemholds,
+        overduefinescap               => $overduefinescap,
+        cap_fine_to_replacement_price => $cap_fine_to_replacement_price,
     };
 
     $rs->update_or_create($params);
