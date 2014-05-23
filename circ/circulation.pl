@@ -52,6 +52,7 @@ use Koha::Patron::Images;
 use Koha::SearchEngine;
 use Koha::SearchEngine::Search;
 use Koha::Patron::Modifications;
+use Koha::Borrowers;
 
 use Date::Calc qw(
   Today
@@ -663,6 +664,8 @@ $template->param( picture => 1 ) if $patron_image;
 
 my $canned_notes = GetAuthorisedValues("BOR_NOTES");
 
+my $schema = Koha::Database->new()->schema();
+
 $template->param(
     debt_confirmed            => $debt_confirmed,
     SpecifyDueDate            => $duedatespec_allow,
@@ -673,6 +676,7 @@ $template->param(
     modifications             => Koha::Patron::Modifications->GetModifications({ borrowernumber => $borrowernumber }),
     override_high_holds       => $override_high_holds,
     nopermission              => scalar $query->param('nopermission'),
+    borrower                  => Koha::Borrowers->find( $borrowernumber ),
 );
 
 output_html_with_http_headers $query, $cookie, $template->output;
