@@ -111,6 +111,14 @@
                                 [% IF ( BORROWER_INF.amountlessthanzero ) %]<li><a href="#opac-user-fines">Credits ([% BORROWER_INF.amountoutstanding %])</a></li>[% END %]
                             [% END %]
                             [% IF ( waiting_count ) %][% IF ( BORROWER_INF.atdestination ) %]<li><a href="#opac-user-waiting">Waiting ([% waiting_count %])</a></li>[% END %][% END %]
+                            [% IF borrower.GetClubEnrollmentsCount || borrower.GetEnrollableClubsCount(1) %]
+                                <li>
+                                    <a id="opac-user-clubs-tab-link" href="#opac-user-clubs">
+                                        Clubs ([% borrower.GetClubEnrollmentsCount %]/[% borrower.GetEnrollableClubsCount(1) %])
+                                    </a>
+                                </li>
+                            [% END %]
+
                             [% IF ( reserves_count ) %]<li><a href="#opac-user-holds">Holds ([% reserves_count %])</a></li>[% END %]
                         </ul>
 
@@ -279,6 +287,12 @@
                                 </table>
                             [% END # IF issues_count %]
                         </div> <!-- / .opac-user-checkouts -->
+
+                        [% IF borrower.GetClubEnrollmentsCount || borrower.GetEnrollableClubsCount(1) %]
+                            <div id="opac-user-clubs">
+                                Loading...
+                            </div>
+                        [% END %]
 
                         [% IF ( OPACFinesTab ) %]
                             <!-- FINES BOX -->
@@ -733,6 +747,13 @@
             [% END %]
 
             $( ".suspend-until" ).datepicker({ minDate: 1 }); // Require that "until date" be in the future
+
+            if ( $('#opac-user-clubs').length ) {
+                $('#opac-user-clubs-tab-link').on('click', function() {
+                    $('#opac-user-clubs').text(_("Loading..."));
+                    $('#opac-user-clubs').load('/cgi-bin/koha/clubs/clubs-tab.pl?borrowernumber=[% borrowernumber %]');
+                });
+            }
         });
         //]]>
     </script>

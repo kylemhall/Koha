@@ -48,4 +48,8 @@ sub IsDebarred {
     return Koha::Borrower::Debarments::IsDebarred($borrower->{borrowernumber});
 }
 
+sub HasValidEmailAddress {
+
+}
+
 1;

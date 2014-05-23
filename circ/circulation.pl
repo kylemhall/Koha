@@ -46,6 +46,7 @@ use C4::Members::Attributes qw(GetBorrowerAttributes);
 use Koha::Borrower::Debarments qw(GetDebarments IsDebarred);
 use Koha::DateUtils;
 use Koha::Database;
+use Koha::Borrowers;
 
 use Date::Calc qw(
   Today
@@ -580,6 +581,8 @@ $template->param( picture => 1 ) if $picture;
 
 my $canned_notes = GetAuthorisedValues("BOR_NOTES");
 
+my $schema = Koha::Database->new()->schema();
+
 $template->param(
     debt_confirmed            => $debt_confirmed,
     SpecifyDueDate            => $duedatespec_allow,
@@ -588,6 +591,7 @@ $template->param(
     canned_bor_notes_loop     => $canned_notes,
     debarments                => GetDebarments({ borrowernumber => $borrowernumber }),
     todaysdate                => output_pref( { dt => dt_from_string()->set(hour => 23)->set(minute => 59), dateformat => 'sql' } ),
+    borrower                  => Koha::Borrowers->find( $borrowernumber ),
 );
 
 output_html_with_http_headers $query, $cookie, $template->output;

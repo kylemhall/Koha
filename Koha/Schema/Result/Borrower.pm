@@ -798,6 +798,21 @@ __PACKAGE__->belongs_to(
   { is_deferrable => 1, on_delete => "RESTRICT", on_update => "RESTRICT" },
 );
 
+=head2 club_enrollments
+
+Type: has_many
+
+Related object: L<Koha::Schema::Result::ClubEnrollment>
+
+=cut
+
+__PACKAGE__->has_many(
+  "club_enrollments",
+  "Koha::Schema::Result::ClubEnrollment",
+  { "foreign.borrowernumber" => "self.borrowernumber" },
+  { cascade_copy => 0, cascade_delete => 0 },
+);
+
 =head2 course_instructors
 
 Type: has_many
@@ -1158,5 +1173,5 @@ __PACKAGE__->many_to_many("ordernumbers", "aqorder_users", "ordernumber");
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Z50zYBD3Hqlv5/EnoLnyZw
 
 
-# You can replace this text with custom content, and it will be preserved on regeneration
+# You can replace this text with custom code or comments, and it will be preserved on regeneration
 1;

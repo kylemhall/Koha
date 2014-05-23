@@ -38,6 +38,12 @@ sub GetAuthValueDropbox {
     return C4::Koha::GetAuthvalueDropbox($category, $default);
 }
 
+sub Categories {
+    my ( $self ) = @_;
+
+    return GetAuthorisedValueCategories();
+}
+
 1;
 
 =head1 NAME
