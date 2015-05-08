@@ -42,6 +42,7 @@ use Text::Unaccent qw( unac_string );
 use Koha::AuthUtils qw(hash_password);
 use Koha::Database;
 use Module::Load;
+use Koha::Borrowers;
 if ( C4::Context->preference('NorwegianPatronDBEnable') && C4::Context->preference('NorwegianPatronDBEnable') == 1 ) {
     load Koha::NorwegianPatronDB, qw( NLUpdateHashedPIN NLEncryptPIN NLSync );
 }
@@ -1413,7 +1414,7 @@ addresses.
 sub GetFirstValidEmailAddress {
     my $borrowernumber = shift;
 
-    my $borrower = Koha::Database->new()->schema()->resultset('Borrower')->find( $borrowernumber );
+    my $borrower = Koha::Borrowers->find( $borrowernumber );
 
     return $borrower->FirstValidEmailAddress();
 }
