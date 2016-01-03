@@ -452,7 +452,12 @@ sub GetMember {
     #FIXME interface to this routine now allows generation of a result set
     #so whole array should be returned but bowhere in the current code expects this
     if (@{$data} ) {
-        return $data->[0];
+        my $patron = $data->[0];
+
+        my $flags = patronflags( $patron );
+        $patron->{flags} = $flags;
+
+        return $patron;
     }
 
     return;
