@@ -229,11 +229,6 @@ foreach my $biblionumber (@biblionumbers) {
         $template->param( $canReserve => 1 );
         $biblioloopiter{$canReserve} = 1;
     }
-    elsif ( $canReserve eq 'itemsAvailable' ) {
-        $template->param( $canReserve => 1 );
-        $biblioloopiter{$canReserve} = 1;
-        $template->param(override_required => 1);
-    }
     else {
         $biblioloopiter{$canReserve} = 1;
     }
