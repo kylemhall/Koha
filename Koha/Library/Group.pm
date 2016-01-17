@@ -37,6 +37,81 @@ Koha::Library::Group - Koha Library::Group object class
 
 =cut
 
+=head3 my @children = $self->get_children()
+
+=cut
+
+sub children {
+    my ($self) = @_;
+
+    my $children =
+      Koha::Library::Groups->search( { parent_id => $self->id }, { order_by => [ 'title', 'branchcode' ] } );
+
+    return $children;
+}
+
+=head3 library
+
+my $library = $group->library();
+
+Returns the library for this group if one exists
+
+=cut
+
+sub library {
+    my ($self) = @_;
+
+    return unless $self->branchcode;
+
+    return Koha::Libraries->find( $self->branchcode );
+}
+
+=head3 libraries
+
+my @libraries = $group->libraries();
+
+Returns the libraries set as direct children of this group
+
+=cut
+
+sub libraries {
+    my ($self) = @_;
+
+    my @children = Koha::Library::Groups->search(
+        {
+            parent_id  => $self->id,
+            branchcode => { '!=' => undef },
+        },
+        { order_by => 'branchcode' }
+    );
+
+    my @libraries = map { $_->library() } @children;
+}
+
+=head3 libraries_not_direct_children
+
+my @libraries = $group->libraries_not_direct_children();
+
+Returns the libraries set as direct children of this group
+
+=cut
+
+sub libraries_not_direct_children {
+    my ($self) = @_;
+
+    my @children = Koha::Library::Groups->search(
+        {
+            parent_id  => $self->id,
+            branchcode => { '!=' => undef },
+        },
+        { order_by => 'branchcode' }
+    );
+
+    my @branchcodes = map { $_->branchcode } @children;
+
+    return Koha::Libraries->search( { branchcode => { -not_in => \@branchcodes } } );
+}
+
 =head3 type
 
 =cut

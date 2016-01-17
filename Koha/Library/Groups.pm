@@ -37,6 +37,53 @@ Koha::Library::Groups - Koha Library::Group object set class
 
 =cut
 
+=head3 my $tree_hashref = $self->get_tree()
+
+=cut
+
+sub get_tree {
+    my ( $self ) = @_;
+
+    my $root_group = $self->get_root_group();
+
+    my $tree;
+
+    $tree->{ $root_group->id }->{object} = $root_group;
+    $tree->{ $root_group->id }->{children} = $root_group->_sub_tree( $root_group );
+
+    return $tree;
+}
+
+=head3 my $tree_hashref = $self->_sub_tree()
+
+=cut
+
+sub _sub_tree {
+    my ( $self, $parent ) = @_;
+
+    my @children = $parent->children();
+
+    my $subtree;
+
+    foreach my $child ( @children ) {
+        $subtree->{ $child->id }->{object} = $child;
+        $subtree->{ $child->id }->{children} = $child->sub_tree($parent);
+    }
+
+    return $subtree;
+
+}
+
+=head3 my @root_groups = $self->get_root_group()
+
+=cut
+
+sub get_root_groups {
+    my ( $self ) = @_;
+
+    return $self->search( { parent_id => undef }, { order_by => 'title' } );
+}
+
 =head3 type
 
 =cut

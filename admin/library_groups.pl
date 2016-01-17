@@ -23,6 +23,10 @@ use C4::Context;
 use C4::Auth;
 use C4::Output;
 
+use Koha::Libraries;
+use Koha::Library::Group;
+use Koha::Library::Groups;
+
 my $cgi = new CGI;
 
 my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
@@ -35,5 +39,64 @@ my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
         debug           => 1,
     }
 );
+
+my $action = $cgi->param('action') || q{};
+
+if ( $action eq 'add' ) {
+    my $parent_id   = $cgi->param('parent_id')   || undef;
+    my $title       = $cgi->param('title')       || undef;
+    my $description = $cgi->param('description') || undef;
+    my $branchcode  = $cgi->param('branchcode')  || undef;
+
+    my $group = Koha::Library::Group->new(
+        {
+            parent_id   => $parent_id,
+            title       => $title,
+            description => $description,
+            branchcode  => $branchcode,
+        }
+    )->store();
+
+    $template->param( added => $group );
+}
+elsif ( $action eq 'edit' ) {
+    my $id          = $cgi->param('id')          || undef;
+    my $title       = $cgi->param('title')       || undef;
+    my $description = $cgi->param('description') || undef;
+
+    if ($id) {
+        my $group = Koha::Library::Groups->find($id);
+
+        $group->set(
+            {
+                title       => $title,
+                description => $description,
+            }
+        )->store();
+
+        $template->param( edited => $group );
+    }
+}
+elsif ( $action eq 'delete' ) {
+    my $id = $cgi->param('id');
+
+    my $group = Koha::Library::Groups->find($id);
+
+    if ($group) {
+        $group->delete();
+        $template->param(
+            deleted => {
+                title   => $group->title(),
+                library => $group->library()
+                ? $group->library()->branchname
+                : undef
+            }
+        );
+    }
+}
+
+my $root_groups = Koha::Library::Groups->get_root_groups();
+
+$template->param( root_groups => $root_groups, );
 
 output_html_with_http_headers $cgi, $cookie, $template->output;
