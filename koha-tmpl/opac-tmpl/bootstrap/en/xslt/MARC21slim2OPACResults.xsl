@@ -10,6 +10,7 @@
     <xsl:output method = "html" indent="yes" omit-xml-declaration = "yes" encoding="UTF-8"/>
     <xsl:key name="item-by-status" match="items:item" use="items:status"/>
     <xsl:key name="item-by-status-and-branch" match="items:item" use="concat(items:status, ' ', items:homebranch)"/>
+    <xsl:key name="item-by-status-and-branch-and-location" match="items:item" use="concat(items:status, ' ', items:homebranch, ' ', items:location)"/>
 
     <xsl:template match="/">
             <xsl:apply-templates/>
@@ -1224,6 +1225,39 @@
                    </xsl:if>
                </span>
     <xsl:choose>
+        <xsl:when test="(count(key('item-by-status', 'available'))!=0 or count(key('item-by-status', 'reference'))!=0)">
+            <span class="results_summary location">
+                <span class="label">Location(s): </span>
+                <xsl:choose>
+                <xsl:when test="count(key('item-by-status', 'available'))>0">
+                    <span class="available">
+                        <xsl:variable name="available_items" select="key('item-by-status', 'available')"/>
+                        <xsl:for-each select="$available_items[generate-id() = generate-id(key('item-by-status-and-branch-and-location', concat(items:status, ' ', items:homebranch, ' ', items:location))[1])]">
+                            <xsl:choose>
+                                <xsl:when test="1"><b><xsl:value-of select="concat(items:location,' ')"/></b></xsl:when>
+                            </xsl:choose>
+                            <xsl:if test="items:itemcallnumber != '' and items:itemcallnumber"> <xsl:value-of select="items:itemcallnumber"/></xsl:if>
+                            <xsl:choose><xsl:when test="position()=last()"><xsl:text>. </xsl:text></xsl:when><xsl:otherwise><xsl:text>, </xsl:text></xsl:otherwise></xsl:choose>
+                        </xsl:for-each>
+                    </span>
+                </xsl:when>
+                <xsl:when test="count(key('item-by-status', 'reference'))>0">
+                    <span class="available">
+                        <xsl:variable name="reference_items" select="key('item-by-status', 'reference')"/>
+                        <xsl:for-each select="$reference_items[generate-id() = generate-id(key('item-by-status-and-branch', concat(items:status, ' ', items:homebranch))[1])]">
+                            <xsl:choose>
+                                <xsl:when test="$OPACItemLocation='location'"><b><xsl:value-of select="concat(items:location,' ')"/></b></xsl:when>
+                                <xsl:when test="$OPACItemLocation='ccode'"><b><xsl:value-of select="concat(items:ccode,' ')"/></b></xsl:when>
+                            </xsl:choose>
+                            <xsl:if test="items:itemcallnumber != '' and items:itemcallnumber"> <xsl:value-of select="items:itemcallnumber"/></xsl:if>
+                            <xsl:choose><xsl:when test="position()=last()"><xsl:text>. </xsl:text></xsl:when><xsl:otherwise><xsl:text>, </xsl:text></xsl:otherwise></xsl:choose>
+                        </xsl:for-each>
+                    </span>
+                </xsl:when>
+                </xsl:choose>
+            </span>
+        </xsl:when>
+
         <xsl:when test="($OPACItemLocation='location' or $OPACItemLocation='ccode') and (count(key('item-by-status', 'available'))!=0 or count(key('item-by-status', 'reference'))!=0)">
             <span class="results_summary location">
                 <span class="label">Location(s): </span>
