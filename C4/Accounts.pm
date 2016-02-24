@@ -45,7 +45,6 @@ BEGIN {
 		&getrefunds
 		&chargelostitem
 		&ReversePayment
-        &makepartialpayment
         &WriteOffFee
         &purge_zero_balance_fees
 	);
@@ -349,26 +348,6 @@ sub ReversePayment {
         }));
 
     }
-
-}
-
-sub makepartialpayment {
-    my ( $accountlines_id, $borrowernumber, $accountno, $amount, $user, $branch, $payment_note ) = @_;
-
-    my $line = Koha::Account::Lines->find( $accountlines_id );
-
-    return Koha::Account->new(
-        {
-            patron_id => $borrowernumber,
-        }
-      )->pay(
-        {
-            amount => $amount,
-            lines  => [ $line ],
-            note   => $payment_note,
-            library_id => $branch,
-        }
-      );
 
 }
 
