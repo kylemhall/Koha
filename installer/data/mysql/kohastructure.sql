@@ -351,6 +351,7 @@ CREATE TABLE `branch_item_rules` ( -- information entered in the circulation and
   `itemtype` varchar(10) NOT NULL, -- the item type this rule applies to (items.itype)
   `holdallowed` tinyint(1) default NULL, -- the number of holds allowed
   hold_fulfillment_policy ENUM('any', 'homebranch', 'holdingbranch') NOT NULL DEFAULT 'any', -- limit trapping of holds by branchcode
+  hold_fulfillment_policy_group INT(11) NULL DEFAULT NULL, -- limit trapping holds by library group
   `returnbranch` varchar(15) default NULL, -- the branch the item returns to (homebranch, holdingbranch, noreturn)
   PRIMARY KEY  (`itemtype`,`branchcode`),
   KEY `branch_item_rules_ibfk_2` (`branchcode`),
@@ -358,6 +359,8 @@ CREATE TABLE `branch_item_rules` ( -- information entered in the circulation and
     ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `branch_item_rules_ibfk_2` FOREIGN KEY (`branchcode`) REFERENCES `branches` (`branchcode`)
     ON DELETE CASCADE ON UPDATE CASCADE
+  CONSTRAINT `branch_item_rules_ibfk_3` FOREIGN KEY (`hold_fulfillment_policy_group`) REFERENCES `library_groups` (`id`)
+    ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -685,10 +688,13 @@ CREATE TABLE `default_branch_circ_rules` (
   `maxonsiteissueqty` int(4) default NULL,
   `holdallowed` tinyint(1) default NULL,
   hold_fulfillment_policy ENUM('any', 'homebranch', 'holdingbranch') NOT NULL DEFAULT 'any', -- limit trapping of holds by branchcode
+  hold_fulfillment_policy_group INT(11) NULL DEFAULT NULL, -- limit trapping holds by library group
   `returnbranch` varchar(15) default NULL,
   PRIMARY KEY (`branchcode`),
   CONSTRAINT `default_branch_circ_rules_ibfk_1` FOREIGN KEY (`branchcode`) REFERENCES `branches` (`branchcode`)
-    ON DELETE CASCADE ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `default_branch_circ_rules_ibfk_2` FOREIGN KEY (`hold_fulfillment_policy_group`) REFERENCES `library_groups` (`id`)
+    ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -699,10 +705,13 @@ CREATE TABLE `default_branch_item_rules` (
   `itemtype` varchar(10) NOT NULL,
   `holdallowed` tinyint(1) default NULL,
   hold_fulfillment_policy ENUM('any', 'homebranch', 'holdingbranch') NOT NULL DEFAULT 'any', -- limit trapping of holds by branchcode
+  hold_fulfillment_policy_group INT(11) NULL DEFAULT NULL, -- limit trapping holds by library group
   `returnbranch` varchar(15) default NULL,
   PRIMARY KEY  (`itemtype`),
   CONSTRAINT `default_branch_item_rules_ibfk_1` FOREIGN KEY (`itemtype`) REFERENCES `itemtypes` (`itemtype`)
-    ON DELETE CASCADE ON UPDATE CASCADE
+    ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `default_branch_item_rules_ibfk_2` FOREIGN KEY (`hold_fulfillment_policy_group`) REFERENCES `library_groups` (`id`)
+    ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -716,8 +725,11 @@ CREATE TABLE `default_circ_rules` (
     `maxonsiteissueqty` int(4) default NULL,
     `holdallowed` int(1) default NULL,
     hold_fulfillment_policy ENUM('any', 'homebranch', 'holdingbranch') NOT NULL DEFAULT 'any', -- limit trapping of holds by branchcode
+  hold_fulfillment_policy_group INT(11) NULL DEFAULT NULL, -- limit trapping holds by library group
     `returnbranch` varchar(15) default NULL,
-    PRIMARY KEY (`singleton`)
+    PRIMARY KEY (`singleton`),
+    CONSTRAINT `default_circ_rules_ibfk_1` FOREIGN KEY (`hold_fulfillment_policy_group`) REFERENCES `library_groups` (`id`)
+        ON DELETE SET NULL ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
