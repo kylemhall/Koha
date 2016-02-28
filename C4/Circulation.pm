@@ -1678,17 +1678,17 @@ sub GetBranchItemRule {
     my $result = {};
 
     my @attempts = (
-        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy
+        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy, hold_fulfillment_policy_group
             FROM branch_item_rules
             WHERE branchcode = ?
               AND itemtype = ?', $branchcode, $itemtype],
-        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy
+        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy, hold_fulfillment_policy_group
             FROM default_branch_circ_rules
             WHERE branchcode = ?', $branchcode],
-        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy
+        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy, hold_fulfillment_policy_group
             FROM default_branch_item_rules
             WHERE itemtype = ?', $itemtype],
-        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy
+        ['SELECT holdallowed, returnbranch, hold_fulfillment_policy, hold_fulfillment_policy_group
             FROM default_circ_rules'],
     );
 
@@ -1702,6 +1702,7 @@ sub GetBranchItemRule {
         # just that a row was returned
         $result->{'holdallowed'}  = $search_result->{'holdallowed'}  unless ( defined $result->{'holdallowed'} );
         $result->{'hold_fulfillment_policy'} = $search_result->{'hold_fulfillment_policy'} unless ( defined $result->{'hold_fulfillment_policy'} );
+        $result->{'hold_fulfillment_policy_group'} = $search_result->{'hold_fulfillment_policy_group'} unless ( defined $result->{'hold_fulfillment_policy_group'} );
         $result->{'returnbranch'} = $search_result->{'returnbranch'} unless ( defined $result->{'returnbranch'} );
     }
     

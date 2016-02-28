@@ -952,9 +952,10 @@ sub CheckReserves {
                     $iteminfo ||= C4::Items::GetItem($itemnumber);
                     my $branch = GetReservesControlBranch( $iteminfo, $borrowerinfo );
                     my $branchitemrule = C4::Circulation::GetBranchItemRule($branch,$iteminfo->{'itype'});
-                    next if ($branchitemrule->{'holdallowed'} == 0);
-                    next if (($branchitemrule->{'holdallowed'} == 1) && ($branch ne $borrowerinfo->{'branchcode'}));
-                    next if ( ($branchitemrule->{hold_fulfillment_policy} ne 'any') && ($res->{branchcode} ne $iteminfo->{ $branchitemrule->{hold_fulfillment_policy} }) );
+                    next if $branchitemrule->{'holdallowed'} == 0;
+                    next if $branchitemrule->{'holdallowed'} == 1 && $branch ne $borrowerinfo->{'branchcode'};
+                    next if $branchitemrule->{hold_fulfillment_policy} ne 'any' && $res->{branchcode} ne $iteminfo->{ $branchitemrule->{hold_fulfillment_policy} };
+                    next if $branchitemrule->{hold_fulfillment_policy_group} && Koha::Library::Groups->find( $branchitemrule->{hold_fulfillment_policy_group} )->is_in( $iteminfo->{ $branchitemrule->{hold_fulfillment_policy} } );
                     $priority = $res->{'priority'};
                     $highest  = $res;
                     last if $local_hold_match;
