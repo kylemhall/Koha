@@ -45,6 +45,18 @@ sub get_root_groups {
     return $self->search( { parent_id => undef }, { order_by => 'title' } );
 }
 
+=head3 my @groups = $self->get_groups
+
+Will return all non-leaf nodes
+
+=cut
+
+sub get_groups {
+    my ( $self ) = @_;
+
+    return $self->search( { branchcode => undef }, { order_by => 'title' } );
+}
+
 =head3 type
 
 =cut

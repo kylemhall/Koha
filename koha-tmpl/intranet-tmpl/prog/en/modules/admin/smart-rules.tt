@@ -379,7 +379,8 @@ for="tobranch"><strong>Clone these rules to:</strong></label> <input type="hidde
                     <th>Total current checkouts allowed</th>
                     <th>Total current on-site checkouts allowed</th>
                     <th>Hold policy</th>
-                    <th>Hold pickup library match</th>
+                    <th>Hold pickup library match field</th>
+                    <th>Hold pickup library match group</th>
                     <th>Return policy</th>
                     <th>&nbsp;</th>
                     <th>&nbsp;</th>
@@ -443,6 +444,25 @@ for="tobranch"><strong>Clone these rules to:</strong></label> <input type="hidde
                                 <option value="holdingbranch">
                                     item's holding library
                                 </option>
+                            [% END %]
+                        </select>
+                    </td>
+                    <td>
+                        <select name="hold_fulfillment_policy_group">
+                            <option value="" selected="selected">
+                                any library
+                            </option>
+
+                            [% FOREACH g IN library_groups %]
+                                [% IF default_hold_fulfillment_policy_group == g.id %]
+                                    <option value="[% g.id %]" selected="selected">
+                                        [% g.title %]
+                                    </option>
+                                [% ELSE %]
+                                    <option value="[% g.id %]">
+                                        [% g.title %]
+                                    </option>
+                                [% END %]
                             [% END %]
                         </select>
                     </td>
@@ -570,7 +590,8 @@ for="tobranch"><strong>Clone these rules to:</strong></label> <input type="hidde
                 <tr>
                     <th>Item type</th>
                     <th>Hold policy</th>
-                    <th>Hold pickup library match</th>
+                    <th>Hold pickup library match field</th>
+                    <th>Hold pickup library match group</th>
                     <th>Return policy</th>
                     <th>&nbsp;</th>
                 </tr>
@@ -601,6 +622,9 @@ for="tobranch"><strong>Clone these rules to:</strong></label> <input type="hidde
                             [% ELSIF ( branch_item_rule_loo.hold_fulfillment_policy == 'holdingbranch' ) %]
                                 item's holding library
                             [% END %]
+                        </td>
+                        <td>
+                            [% branch_item_rule_loo.hold_fulfillment_policy_group.title | html %]
                         </td>
                         <td>[% IF ( branch_item_rule_loo.returnbranch == 'homebranch' ) %]
                                 Item returns home
@@ -645,6 +669,19 @@ for="tobranch"><strong>Clone these rules to:</strong></label> <input type="hidde
                             <option value="holdingbranch">
                                 item's holding library
                             </option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="hold_fulfillment_policy_group">
+                            <option selected="selected">
+                                any library
+                            </option>
+
+                            [% FOREACH g IN library_groups %]
+                                <option value="[% g.id %]">
+                                    [% g.title %]
+                                </option>
+                            [% END %]
                         </select>
                     </td>
                     <td>
