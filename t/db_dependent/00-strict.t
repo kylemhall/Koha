@@ -19,6 +19,18 @@ my @dirs = ( 'acqui', 'admin', 'authorities', 'basket',
     'sms', 'suggestion', 'svc', 'tags', 'tools', 'virtualshelves' );
 
 $Test::Strict::TEST_STRICT = 0;
-$Test::Strict::TEST_SKIP = [ 'misc/kohalib.pl', 'sms/sms_listen_windows_start.pl', 'misc/plack/koha.psgi' ];
 
-all_perl_files_ok(@dirs);
+find( \&wanted, @dirs );
+
+sub wanted {
+    my $file = $File::Find::name;
+
+    return if $file eq 'misc/kohalib.pl';
+    return if $file eq 'sms/sms_listen_windows_start.pl';
+    return if $file eq 'misc/plack/koha.psgi';
+    return unless $file =~ /[pl|pm]$/i;
+
+    strict_ok( $file );
+    syntax_ok( $file );
+
+}
