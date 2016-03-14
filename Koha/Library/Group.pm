@@ -20,6 +20,8 @@ package Koha::Library::Group;
 use Modern::Perl;
 
 use Carp;
+use List::Util qw(any);
+use List::MoreUtils qw(uniq);
 
 use Koha::Database;
 use Koha::DateUtils qw(dt_from_string);
@@ -37,17 +39,71 @@ Koha::Library::Group - Koha Library::Group object class
 
 =cut
 
-=head3 my @children = $self->get_children()
+=head3 is_in
+
+my $is_in = $self->is_in( $branchcode );
+
+Returns true if the given branch node is a child of this node of one of this node's children
+
+=cut
+
+sub is_in {
+    my ( $self, $branchcode ) = @_;
+
+    $self->{libraries_in}->{$branchcode} ||=
+      any { $_ eq $branchcode } $self->libraries;
+
+    return $self->{libraries_in}->{$branchcode};
+}
+
+=head3 libraries
+
+my @branchcodes = $self->libraries
+
+Returns a list of branchcodes for all the libraries that are children or grandchildren of this group
+
+=cut
+
+sub libraries {
+    my ($self) = @_;
+
+    return @{ $self->{libraries} } if $self->{libraries};
+
+    my @libraries;
+
+    my @children = $self->children;
+    foreach my $child ( @children ) {
+        if ( my $b = $child->branchcode ) {
+            push( @libraries, $b );
+        }
+        else {
+            push( @libraries, $child->libraries() );
+        }
+    }
+
+    # remove duplicates
+    @libraries = uniq(@libraries);
+
+    $self->{libraries} = \@libraries;
+
+    return @libraries;
+}
+
+=head3 my @children = $self->children()
 
 =cut
 
 sub children {
     my ($self) = @_;
 
-    my $children =
-      Koha::Library::Groups->search( { parent_id => $self->id }, { order_by => [ 'title', 'branchcode' ] } );
-
-    return $children;
+    return Koha::Library::Groups->search(
+        {
+            parent_id => $self->id
+        },
+        {
+            order_by => [ 'title', 'branchcode' ]
+        }
+    );
 }
 
 =head3 library
@@ -87,7 +143,8 @@ sub libraries_not_direct_children {
 
     my @branchcodes = map { $_->branchcode } @children;
 
-    return Koha::Libraries->search( { branchcode => { -not_in => \@branchcodes } } );
+    return Koha::Libraries->search(
+        { branchcode => { -not_in => \@branchcodes } } );
 }
 
 =head3 store

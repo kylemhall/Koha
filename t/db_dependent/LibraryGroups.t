@@ -4,7 +4,7 @@ use Modern::Perl;
 
 use List::MoreUtils 'any';
 
-use Test::More tests => 13;
+use Test::More tests => 25;
 
 use t::lib::TestBuilder;
 
@@ -54,6 +54,20 @@ my $groupA2 = Koha::Library::Group->new({ parent_id => $groupA->id,     title =>
 
 my $groupA_library1  = Koha::Library::Group->new({ parent_id => $groupA->id,  branchcode => $library1->{branchcode} })->store();
 my $groupA1_library2 = Koha::Library::Group->new({ parent_id => $groupA1->id, branchcode => $library2->{branchcode} })->store();
+
+is( $groupA->is_in(  $library1->{branchcode} ), 1,   'Library 1 is in group A' );
+is( $groupA->is_in(  $library2->{branchcode} ), 1,   'Library 2 is in group A' );
+is( $groupA->is_in(  $library3->{branchcode} ), q{}, 'Library 3 is not in group A' );
+is( $groupA1->is_in( $library1->{branchcode} ), q{}, 'Library 1 is not in group A1' );
+is( $groupA1->is_in( $library2->{branchcode} ), 1,   'Library 2 is in group A1' );
+is( $groupA1->is_in( $library3->{branchcode} ), q{}, 'Library 3 is not in group A1' );
+is( $groupA2->is_in( $library1->{branchcode} ), q{}, 'Library 1 is not in group A2' );
+is( $groupA2->is_in( $library2->{branchcode} ), q{}, 'Library 2 is not in group A2' );
+is( $groupA2->is_in( $library3->{branchcode} ), q{}, 'Library 3 is not in group A2' );
+
+is_deeply( [$groupA->libraries],  [ $library1->{branchcode}, $library2->{branchcode}], 'Group A libraries are correct' );
+is_deeply( [$groupA1->libraries], [ $library2->{branchcode}],                          'Group A1 libraries are correct' );
+is_deeply( [$groupA2->libraries], [],                                                  'Group A2 libraries are correct' );
 
 my @children = $root_group->children()->as_list();
 is( $children[0]->id, $groupA->id, 'Child of root group set correctly' );
