@@ -1,5 +1,5 @@
 # RELEASE NOTES FOR KOHA 16.6.0
-04 Nov 2016
+11 Nov 2016
 
 Koha is the first free and open source software library automation
 package (ILS). Development is sponsored by libraries of varying types
@@ -19,7 +19,7 @@ Installation instructions can be found at:
 
 Koha 16.6.0 is a major release, that comes with many new features.
 
-It includes 2 new features, 243 enhancements, 344 bugfixes.
+It includes 3 new features, 240 enhancements, 360 bugfixes.
 
 
 
@@ -28,6 +28,10 @@ It includes 2 new features, 243 enhancements, 344 bugfixes.
 ### Cataloging
 
 - [[14793]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14793) New cataloguing plugin unimarc_field_225a_bis
+
+### Circulation
+
+- [[14610]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14610) Add ability to place article requests in Koha
 
 ### Patrons
 
@@ -45,24 +49,24 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 
 - [[7039]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=7039) Link to existing record from result list in acquisition search
 - [[9896]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=9896) Show vendor in subscription search when creating an order for a subscription
-- [[13321]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=13321) Tax and prices calculation need to be fixed
+- [[13321]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=13321) Fix tax and prices calculation
 - [[13323]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=13323) Change the tax rate on receiving
 - [[14752]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14752) Add multiple copies to a basket at once
 - [[15128]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15128) Add ability to limit the number of open purchase suggestions a patron can make
 - [[15164]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15164) Allow editing of the invoice number after initial saving
 - [[16123]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16123) Display budget hierarchy in the budget dropdown menu used when placing a new order
-- [[16511]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16511) Making contracts actions buttons
-- [[16525]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16525) Have cancel button when adding new aq budget
+- [[16511]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16511) Make contracts actions buttons
+- [[16525]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16525) Add cancel button when adding a new acq budget
 - [[16738]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16738) Improve EDIFACT messages template
-- [[16752]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16752) Remove the use of event attributes from some acquisitions templates
+- [[16841]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16841) Help for Library EANs
+- [[16842]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16842) Help for EDI accounts
 - [[16843]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16843) Help for EDIFACT messages
 - [[16981]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16981) Add EDI admin links to acq menu
 - [[17414]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17414) Add GIR codes added to Edifact since 1.2
 
 ### Architecture, internals, and plumbing
 
-- [[11921]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=11921) memcached configuration should be moved back to koha-conf.xml
-- [[14610]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14610) Add ability to place article requests in Koha
+- [[11921]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=11921) Move memcached configuration back to koha-conf.xml
 - [[15407]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15407) Move the patron categories related code to Koha::Patron::Categories - part 2
 - [[15451]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15451) Move the CSV related code to Koha::CsvProfile[s]
 - [[15758]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15758) Move the C4::Branch related code to Koha::Libraries - part 4
@@ -84,7 +88,6 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 - [[16685]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16685) Use eval instead of do for .perl atomicupdates
 - [[16693]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16693) reserve/renewscript.pl is not used and should be removed
 - [[16715]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16715) Koha::Cache - Use Sereal for serialization
-- [[16768]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16768) Add official number format for Switzerland: 1'234'567.89
 - [[16769]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16769) Koha::Cache->set_in_cache calls need to be standardised
 - [[16770]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16770) Remove wrong uses of Memoize::Memcached
 - [[16819]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16819) C4::Members::DelMember should use Koha::Holds to delete holds
@@ -136,7 +139,7 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 ### Circulation
 
 - [[3669]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=3669) Create a template for circ/add_message.pl
-- [[6906]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=6906) show 'Borrower has previously issued $ITEM' alert on checkout
+- [[6906]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=6906) Show 'Borrower has previously issued $ITEM' alert on checkout
 - [[9543]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=9543) Show patrons messaging subscription on holds notification
 - [[11360]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=11360) Disable barcode field and submit button when a hold is found
 - [[13134]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=13134) Add patron category to returns confirmation dialogs
@@ -153,21 +156,14 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 ### Command-line Utilities
 
 - [[10337]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=10337) Add a script to insert all sample data automatically
-- [[14504]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14504) Add command-line script to batch delete items based on data in items table.
+- [[14504]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14504) Add command-line script to batch delete items based on data in items table
 - [[17444]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17444) Export by date and time in export_record.pl
 - [[17459]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17459) Add a script to create a superlibrarian user
 
 ### Course reserves
 
 - [[15853]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15853) Add author and link columns to opac course reserves table
-
-### Database
-
-- [[14435]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14435) Recover feature to store and access results of a report
-
-### Documentation
-
-- [[16537]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16537) Overdue and Status triggers grammar
+- [[16651]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16651) Notes field blank for 952$z in opac-course-details.pl
 
 ### Hold requests
 
@@ -178,17 +174,8 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 
 ### I18N/L10N
 
-- [[16601]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16601) Update MARC21 it-IT frameworks to Update 22 (April 2016)
 - [[16687]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16687) Translatability: Fix issues with sentence splitting in Administration preferences
 - [[16952]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16952) Add sorting rules for Czech language to Zebra
-
-### Installation and upgrade (web-based installer)
-
-- [[16472]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16472) Update MARC21 de-DE frameworks to Update 22 (April 2016)
-
-### Label/patron card printing
-
-- [[16576]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16576) Remove the use of "onclick" from label templates
 
 ### Lists
 
@@ -196,6 +183,8 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 
 ### MARC Bibliographic data support
 
+- [[16472]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16472) Update MARC21 de-DE frameworks to Update 22 (April 2016)
+- [[16601]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16601) Update MARC21 it-IT frameworks to Update 22 (April 2016)
 - [[17318]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17318) Make 'Normalization rule' configurable on matchpoint definition
 
 ### MARC Bibliographic record staging/import
@@ -211,20 +200,15 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 - [[5456]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=5456) Create a link to opac-ics.pl
 - [[10848]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=10848) Allow configuration of mandatory/required fields on the suggestion form in OPAC
 - [[15388]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15388) Show Syndetics covers by UPC in search results
-- [[16507]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16507) show play media tab first
+- [[16507]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16507) Show play media tab first
 - [[16551]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16551) Display the name of lists to the search results at the OPAC
 - [[16552]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16552) Add the ability to change the default holdings sort
 - [[16641]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16641) Update Novelist in opac to use updated call to fetch content
-- [[16651]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16651) Notes field blank for 952$z in opac-course-details.pl
-- [[16805]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16805) Log in with database admin user breaks OPAC
 - [[16875]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16875) OPAC:  Removing link to records if authority is not used by any records
 - [[16876]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16876) Remove Full heading column in OPAC Authority search
 - [[17109]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17109) sendbasket: Remove second authentication, add CSRF token
 - [[17191]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17191) Confirm message on deleting tag in OPAC
-- [[17210]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17210) Remove use of onclick from biblio detail sidebar in OPAC
-- [[17211]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17211) Remove use of onclick from OPAC fines page
 - [[17220]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17220) Improve clarity when placing a hold by changing button text from "Place hold" to "Confirm hold"
-- [[17222]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17222) Remove use of onclick from OPAC member entry page
 
 ### Packaging
 
@@ -238,6 +222,7 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 - [[3534]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=3534) Patron quick add form
 - [[10760]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=10760) Use Street Number and Street type in Alternate Address section
 - [[12402]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=12402) Show more on pending patron modification requests
+- [[14874]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14874) Add ability to search for patrons by date of birth from checkout and patron quick searches
 - [[16273]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16273) Prevent selfregistration from printing the borrower password and filling the logging form
 - [[16274]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16274) Make the selfregistration branchcode selection configurable
 - [[16275]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16275) Prevent patron self registration if the email already filled in borrowers.email
@@ -250,7 +235,8 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 ### Reports
 
 - [[6934]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=6934) New report Cash Register Statistics
-- [[7679]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=7679) Statistics wizard: circulation (new filters)
+- [[7679]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=7679) Add new filters to circulation statistics wizard
+- [[14435]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14435) Recover feature to store and access results of a report
 - [[16388]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16388) Move option to download report into reports toolbar
 - [[16978]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16978) Add delete reports user permission
 - [[17341]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17341) Enhance the report action button on guided_reports.pl
@@ -278,26 +264,19 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 - [[16289]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16289) Abbreviated formatting for numbering patterns
 - [[16745]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16745) Add edit catalog and edit items links to serials toolbar
 - [[16874]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16874) Making serials collections actions buttons
-- [[16946]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16946) Remove the use of "onclick" from several serials templates
 - [[16950]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16950) Serials subscriptions advanced search shows '0 found' pre-search
-- [[16963]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16963) Remove the use of "onclick" from subscription add template
-- [[16967]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16967) Remove the use of "onclick" from serial frequency and numbering management
-- [[16968]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16968) Remove the use of "onclick" from serial patron and vendor search templates
 - [[17165]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17165) Improve heading on vendor search when searching for all vendors in Serials
 - [[17402]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17402) Enhance the actions button on serials-search.pl
 
 ### Staff Client
 
 - [[14790]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14790) Link to OPAC view from within subscriptions, search and item editor
-- [[14874]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14874) Add ability to search for patrons by date of birth from checkout and patron quick searches
 - [[16324]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16324) Move item search into header
 
 ### System Administration
 
 - [[16165]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16165) Include link to ILS-DI documentation page in ILS-DI system preference
-- [[16310]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16310) Remove the use of "onclick" from audio alerts template
-- [[16841]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16841) Help for Library EANs
-- [[16842]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16842) Help for EDI accounts
+- [[16768]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16768) Add official number format for Switzerland: 1'234'567.89
 - [[16945]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16945) Syspref PatronSelfRegistration: Add note about setting PatronSelfRegistrationDefaultCategory
 - [[17162]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17162) Moving MARC tags structure actions into a drop down menu
 - [[17163]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17163) Making MARC subfields structure actions buttons
@@ -312,10 +291,12 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 - [[16005]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16005) Standardize use of icons for delete and cancel operations
 - [[16127]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16127) Add discharge menu item to patron toolbar
 - [[16148]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16148) Revised layout and behavior of marc modification template management
+- [[16310]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16310) Remove the use of "onclick" from audio alerts template
 - [[16400]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16400) Proposal to uniform the placement of submit buttons
 - [[16437]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16437) Automatic item modifications by age needs prettying
 - [[16450]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16450) Remove the use of "onclick" from guarantor search template
 - [[16456]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16456) Add Font Awesome icons to some buttons in Tools module, section Patrons and circulation
+- [[16468]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16468) Remove last "onclick" from the stage MARC records template
 - [[16469]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16469) Remove the use of "onclick" from some catalog pages
 - [[16477]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16477) Improve staff client cart JavaScript and template
 - [[16490]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16490) Add an "add to cart" link for each search results in the staff client
@@ -325,19 +306,30 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 - [[16543]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16543) Make edit and delete links styled buttons in patron attribute types administration
 - [[16549]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16549) Remove the use of "onclick" from header search forms
 - [[16557]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16557) Remove the use of "onclick" from several include files
+- [[16576]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16576) Remove the use of "onclick" from label templates
 - [[16592]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16592) Use Bootstrap modal for MARC and Card preview on acquisitions receipt summary page
 - [[16602]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16602) Remove the use of "onclick" from several templates
 - [[16677]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16677) Use abbr for authorities linked headings
+- [[16752]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16752) Remove the use of event attributes from some acquisitions templates
 - [[16772]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16772) Change label from 'For:' to 'Library:' to ease translation
 - [[16778]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16778) Use Bootstrap modal for card printing on patron lists page
 - [[16801]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16801) Include Font Awesome Icons to check/unchek all in Administration > Library transfer limits
 - [[16906]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16906) Add DataTables pagination and filter to top of saved SQL reports table
+- [[16937]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16937) Remove the use of "onclick" from the manage staged MARC records template
+- [[16938]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16938) Remove the use of "onclick" from batch patrons modification template
+- [[16946]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16946) Remove the use of "onclick" from several serials templates
+- [[16963]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16963) Remove the use of "onclick" from subscription add template
+- [[16967]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16967) Remove the use of "onclick" from serial frequency and numbering management
+- [[16968]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16968) Remove the use of "onclick" from serial patron and vendor search templates
 - [[16995]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16995) Remove event attributes from two include files
 - [[17011]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17011) Remove "onblur" event attribute from some templates
 - [[17012]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17012) Remove more event attributes from administration templates
 - [[17056]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17056) Remove event attributes from various templates
 - [[17083]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17083) Remove more event attributes from tools templates
 - [[17112]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17112) Action buttons for course reserves detail page
+- [[17210]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17210) Remove use of onclick from biblio detail sidebar in OPAC
+- [[17211]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17211) Remove use of onclick from OPAC fines page
+- [[17222]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17222) Remove use of onclick from OPAC member entry page
 
 ### Test Suite
 
@@ -350,11 +342,8 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 
 - [[15023]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15023) Allow patron anonymize/bulk delete tool to be limited by branch
 - [[15213]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=15213) Fix tools sidebar to highlight Patron lists when in that module
-- [[16468]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16468) Remove last "onclick" from the stage MARC records template
 - [[16513]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16513) Improvements and fixes for quote upload process
 - [[16681]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16681) Allow update of opacnote via batch patron modification tool
-- [[16937]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16937) Remove the use of "onclick" from the manage staged MARC records template
-- [[16938]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16938) Remove the use of "onclick" from batch patrons modification template
 - [[17147]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17147) Streamline messages following batch record modification
 - [[17161]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17161) Making 'preview MARC' links show as buttons in batch record mod
 - [[17183]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17183) Koha News 'delete selected' function doesn't check if anything has been selected
@@ -371,7 +360,7 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 - [[16271]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16271) Allow more filters on /api/v1/holds
 - [[16699]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16699) Swagger: Split parameters and paths, and specify required permissions for resource
 - [[17032]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17032) REST API tests: Make sure Swagger object definition is up-to-date with database
-- [[17428]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17428) REST api: CRUD endpoint for cities
+- [[17428]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17428) REST API: CRUD endpoint for cities
 - [[17432]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17432) Remove requirement to minify swagger.json
 - [[17445]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17445) REST API: Generic handling of malformed query parameters
 
@@ -389,6 +378,10 @@ have already been fixed in maintainance releases)
 
 - [[17177]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17177) Can't locate Koha/Config/SysPrefs.pm in @INC on intranet about page
 
+### Acquisitions
+
+- [[16493]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16493) acq matching on title and author
+
 ### Architecture, internals, and plumbing
 
 - [[16443]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16443) C4::Members::Statistics is not plack safe
@@ -398,6 +391,12 @@ have already been fixed in maintainance releases)
 - [[17048]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17048) Authority search result list page scrolling not working properly
 - [[17050]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17050) Accessing the REST API through Plack kicks the session out
 - [[17332]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17332) Memcached configuration missing in koha-conf* files
+- [[17494]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17494) Koha generating duplicate self registration tokens
+- [[17548]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17548) Step 1 of memberentry explodes
+
+### Authentication
+
+- [[17481]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17481) Cas Logout: bug 11048 has been incorrectly merged
 
 ### Cataloging
 
@@ -544,6 +543,7 @@ have already been fixed in maintainance releases)
 ### Architecture, internals, and plumbing
 
 - [[10455]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=10455) remove redundant 'biblioitems.marc' field
+- [[12633]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=12633) SQLHelper replacement - C4::Members
 - [[13074]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=13074) C4::Items::_build_default_values_for_mod_marc should use Koha::Cache
 - [[14060]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14060) Remove readonly on date inputs
 - [[14707]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14707) Change UsageStatsCountry from free text to a dropdown list
@@ -595,6 +595,11 @@ have already been fixed in maintainance releases)
 - [[17538]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17538) t/db_dependent/Upload.t is broken
 - [[17540]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17540) auth_values_input_www.t is broken
 - [[17544]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17544) populate_db.pl should not require t::lib::Mocks
+- [[17552]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17552) Koha::Objects->reset does no longer allow chaining
+- [[17562]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17562) Acquisition.t is broken
+- [[17563]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17563) Acquisition/CancelReceipt.t is broken
+- [[17564]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17564) Acquisition/OrderUsers.t is broken
+- [[17589]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17589) Improper method type in Koha::ItemType(s)
 
 ### Authentication
 
@@ -630,6 +635,7 @@ have already been fixed in maintainance releases)
 - [[17095]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17095) Regression: Error when checking out to non-existent patron
 - [[17310]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17310) Broken URLs in 'Item renewed' / 'Cannot renew' messages
 - [[17352]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17352) Patron search type is hard coded to 'contain' in circ/circulation.pl
+- [[17394]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17394) exporting checkouts with items selects without items in combo-box
 
 ### Command-line Utilities
 
@@ -643,6 +649,10 @@ have already been fixed in maintainance releases)
 ### Database
 
 - [[10459]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=10459) borrowers should have a timestamp
+
+### Documentation
+
+- [[16537]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16537) Overdue and Status triggers grammar
 
 ### Hold requests
 
@@ -673,7 +683,7 @@ koha-tmpl/opac-tmpl/bootstrap/en/modules/opac-user.tt
 - [[16634]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16634) Translatability: Fix issue in memberentrygen.tt
 - [[16697]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16697) Translatability: Fix problem with isolated "'s"in request.tt
 - [[16701]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16701) Translatability: Fix problem with isolated ' in currency.tt
-- [[16718]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16718) Translatability: Fix problems with sentence splitting by <strong> in about.tt
+- [[16718]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16718) Translatability: Fix problems with sentence splitting by use of strong tag in about.tt
 - [[16776]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16776) If language is set by external link language switcher does not work
 - [[16861]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16861) Translatability: Fix separated "below" in circulation.tt
 - [[16871]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16871) Translatability: Avoid [%%-problem and fix related sentence splitting in catalogue/detail.tt
@@ -734,6 +744,7 @@ koha-tmpl/opac-tmpl/bootstrap/en/modules/opac-user.tt
 - [[16597]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16597) Reflected XSS in [opac-]shelves and [opac-]shareshelf
 - [[16599]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16599) XSS found in opac-shareshelf.pl
 - [[16615]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16615) OpenLibrary: always use SSL when referencing external resources
+- [[16805]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16805) Log in with database admin user breaks OPAC
 - [[16806]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16806) "Too soon" renewal error generates no alert for user
 - [[17068]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17068) empty list item in opac-reserves.tt
 - [[17078]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17078) Format fines on opac-account.pl
@@ -781,12 +792,14 @@ koha-tmpl/opac-tmpl/bootstrap/en/modules/opac-user.tt
 - [[17404]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17404) Patron deletion page: Fix title and breadcrumb
 - [[17423]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17423) patronimage.pl permission is too restrictive
 - [[17434]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17434) Moremember displaying primary and secondary phone number twice
+- [[17521]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17521) Step 3 of patron modification editor not checking age limits
 
 ### Reports
 
 - [[16760]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16760) Circulation Statistics wizard not populating itemtype correctly
 - [[16816]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16816) Duplicate button on report results copies parameters used
 - [[17053]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17053) Clearing search term in Reports
+- [[17535]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17535) Regression: Search for reports by keywords
 
 ### SIP2
 
@@ -881,6 +894,7 @@ koha-tmpl/opac-tmpl/bootstrap/en/modules/opac-user.tt
 - [[16890]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16890) TestBuilder always generate datetime for dates
 - [[17430]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17430) MarkIssueReturned.t should create its own data
 - [[17441]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17441) t/db_dependent/Letters.t fails on Jenkins
+- [[17476]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=17476) Failed test 'Create DateTime with dt_from_string() for 2100-01-01 with TZ in less than 2s'
 
 ### Tools
 
@@ -1031,6 +1045,7 @@ We thank the following individuals who contributed patches to Koha 16.6.0.
 - kohamaster (1)
 - Liz (1)
 - NguyenDuyTinh (1)
+- radiuscz (1)
 - Blou (2)
 - genevieve (2)
 - phette23 (3)
@@ -1048,14 +1063,14 @@ We thank the following individuals who contributed patches to Koha 16.6.0.
 - Galen Charlton (4)
 - Barton Chittenden (10)
 - Nick Clemens (48)
-- Tomás Cohen Arazi (86)
+- Tomás Cohen Arazi (88)
 - Chris Cormack (11)
 - Indranil Das Gupta (L2C2 Technologies) (1)
 - Frédéric Demians (2)
 - Marcel de Rooy (83)
 - Simith D'Oliveira (1)
 - Rocio Dressler (1)
-- Jonathan Druart (442)
+- Jonathan Druart (453)
 - Nicole Engard (2)
 - Magnus Enger (6)
 - Charles Farmer (1)
@@ -1077,9 +1092,9 @@ We thank the following individuals who contributed patches to Koha 16.6.0.
 - Jesse Maseto (1)
 - Julian Maurice (24)
 - Holger Meißner (1)
-- Matthias Meusburger (4)
+- Matthias Meusburger (5)
 - Sophie Meynieux (3)
-- Kyle M Hall (168)
+- Kyle M Hall (172)
 - Josef Moravec (9)
 - Aliki Pavlidou (1)
 - Liz Rea (2)
@@ -1089,7 +1104,7 @@ We thank the following individuals who contributed patches to Koha 16.6.0.
 - A. Sassmannshausen (1)
 - Alex Sassmannshausen (20)
 - Robin Sheat (1)
-- Fridolin Somers (11)
+- Fridolin Somers (12)
 - Zeno Tajoli (3)
 - Lari Taskula (19)
 - Lyon3 Team (1)
@@ -1105,14 +1120,15 @@ patches to Koha 16.6.0
 - ACPL (63)
 - aei.mpg.de (1)
 - arts.ac.uk (3)
-- BibLibre (68)
+- BibLibre (70)
 - biblos.pk.edu.pl (14)
 - BigBallOfWax (3)
 - BSZ BW (23)
-- bugs.koha-community.org (424)
+- bugs.koha-community.org (435)
 - bwstest.bywatersolutions.com (1)
-- ByWater-Solutions (245)
+- ByWater-Solutions (249)
 - Catalyst (12)
+- centrum.cz (1)
 - Cineca (3)
 - Hochschule für Gesundheit (hsg), Germany (1)
 - inLibro.com (6)
@@ -1132,7 +1148,7 @@ patches to Koha 16.6.0
 - student.uef.fi (16)
 - switchinc.org (1)
 - Tamil (2)
-- Theke Solutions (83)
+- Theke Solutions (85)
 - unidentified (112)
 - Universidad Nacional de Córdoba (16)
 - Université Jean Moulin Lyon 3 (1)
@@ -1146,6 +1162,7 @@ for Koha.
 - Andreas Roussos (4)
 - Andrew Brenza (1)
 - Arslan Farooq (1)
+- Barbara Fondren (1)
 - barbara johnson (2)
 - Barbara.Johnson@bedfordtx.gov (1)
 - Barbara Walters (5)
@@ -1181,13 +1198,13 @@ for Koha.
 - Jan Kissig (1)
 - Jason Robb (12)
 - Jennifer Schmidt (14)
-- Jesse Maseto (4)
+- Jesse Maseto (5)
 - Jesse Weaver (22)
 - JM Broust (1)
 - Johanna Raisa (8)
-- Jonathan Druart (430)
+- Jonathan Druart (433)
 - Jonathan Field (4)
-- Josef Moravec (25)
+- Josef Moravec (33)
 - Joy Nelson (4)
 - Juliette (1)
 - Katrin Fischer (116)
@@ -1195,20 +1212,20 @@ for Koha.
 - Laurence Rault (12)
 - Lisette Scheer (1)
 - Liz Rea (14)
-- Lucio Moraes (3)
+- Lucio Moraes (4)
 - Magnus Enger (1)
 - Marc (29)
 - Marc Veron (13)
 - Marc Véron (101)
 - Margaret Thrasher (10)
 - Mark Tompsett (49)
-- Martin Renvoize (28)
+- Martin Renvoize (29)
 - Mason James (9)
 - Matthias Meusburger (1)
 - Megan Wianecki (1)
 - mehdi (1)
 - Michael Kuhn (1)
-- Mirko Tietgen (16)
+- Mirko Tietgen (17)
 - Nick Clemens (138)
 - Nicolas Legrand (17)
 - Nicole (1)
@@ -1230,14 +1247,14 @@ for Koha.
 - Sonia Bouis (26)
 - Srdjan (37)
 - Trent Roby (1)
-- Katrin Fischer  (154)
+- Katrin Fischer  (160)
 - Nikos Chatzakis, Afrodite Malliari (1)
-- Tomas Cohen Arazi (149)
+- Tomas Cohen Arazi (158)
 - Alain et Aurélie (2)
 - Barton Chittenden barton@bywatersolutions.com (1)
 - Jason M. Burds (14)
-- Nicole C Engard (9)
-- Kyle M Hall (1202)
+- Nicole C Engard (10)
+- Kyle M Hall (1223)
 - Bernardo Gonzalez Kriegel (28)
 - Marcel de Rooy (219)
 - Eivin Giske Skaaren (1)
@@ -1254,7 +1271,7 @@ version of Koha can be retrieved by checking out the master branch of:
 - [Koha Git Repository](git://git.koha-community.org/koha.git)
 
 The branch for this version of Koha and future bugfixes in this release
-line is bug17539-qa.
+line is (detached from origin-master).
 
 
 ## Bugs and feature requests
@@ -1267,4 +1284,4 @@ tracker at:
 He rau ringa e oti ai.
 (Many hands finish the work)
 
-Autogenerated release notes updated last on 04 Nov 2016 13:00:46.
+Autogenerated release notes updated last on 11 Nov 2016 02:58:35.
