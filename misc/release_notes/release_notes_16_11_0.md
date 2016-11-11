@@ -21,31 +21,22 @@ Koha 16.6.0 is a major release, that comes with many new features.
 
 It includes 3 new features, 240 enhancements, 360 bugfixes.
 
-
-
 ## New features
+
+- [[14695]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14695) Add ability to place multiple item holds on a given record per patron
+- [[3534]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=3534) Patron quick add form
+- [[5260]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=5260) Add option to send an order by e-mail to the acquisition module
+- [[14610]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14610) Add ability to place article requests in Koha
+- [[5670]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=5670) Housebound Readers Module
 
 ### Cataloging
 
 - [[14793]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14793) New cataloguing plugin unimarc_field_225a_bis
 
-### Circulation
-
-- [[14610]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14610) Add ability to place article requests in Koha
-
-### Patrons
-
-- [[5670]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=5670) Housebound Readers Module
-
-## Enhancements
-
 ### Acquisitions
-
-- [[5260]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=5260) Add option to send an order by e-mail to the acquisition module
 
 > It will be possible to send order information to the vendor by e-mail. For now this feature can be triggered manually with a button before closing the basket.
 The order e-mail is based on the acquisition claim feature, but uses a new notice template: ACQORDER.
-
 
 - [[7039]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=7039) Link to existing record from result list in acquisition search
 - [[9896]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=9896) Show vendor in subscription search when creating an order for a subscription
@@ -169,7 +160,6 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 
 - [[8030]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=8030) Change pickup location of a hold from patron record
 - [[14642]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14642) Add logging of hold modifications
-- [[14695]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14695) Add ability to place multiple item holds on a given record per patron
 - [[16336]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=16336) UX of holds patron search with long lists of results
 
 ### I18N/L10N
@@ -219,7 +209,6 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 
 ### Patrons
 
-- [[3534]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=3534) Patron quick add form
 - [[10760]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=10760) Use Street Number and Street type in Alternate Address section
 - [[12402]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=12402) Show more on pending patron modification requests
 - [[14874]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14874) Add ability to search for patrons by date of birth from checkout and patron quick searches
@@ -989,7 +978,9 @@ The most up-to-date translations can be found at:
 
 The release team for Koha 16.6.0 is
 
-- Release Manager: [](mailto:)
+- Release Manager:
+  - [Brendan Gallagher](mailto:brendan@bywatersolutions.com)
+  - [Kyle M Hall](mailto:kyle@bywatersolutions.com)
 - QA Manager: [Katrin Fischer](mailto:Katrin.Fischer@bsz-bw.de)
 - QA Team:
   - [Kyle Hall](mailto:kyle@bywatersolutions.com)
@@ -1009,7 +1000,7 @@ The release team for Koha 16.6.0 is
 - Documentation Manager: [Nicole C. Engard](mailto:nengard@gmail.com)
 - Translation Manager: [Bernardo Gonzalez Kriegel](mailto:bgkriegel@gmail.com)
 - Wiki curators: 
-  - [Brook](mailto:)
+  - [Brookea(mailto:)
   - [Thomas Dukleth](mailto:kohadevel@agogme.com)
 - Release Maintainers:
   - 16.05 -- [Frédéric Demians](mailto:f.demians@tamil.fr)
@@ -1271,7 +1262,7 @@ version of Koha can be retrieved by checking out the master branch of:
 - [Koha Git Repository](git://git.koha-community.org/koha.git)
 
 The branch for this version of Koha and future bugfixes in this release
-line is (detached from origin-master).
+line is v16.11.x
 
 
 ## Bugs and feature requests
