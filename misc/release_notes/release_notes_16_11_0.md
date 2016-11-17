@@ -1,4 +1,4 @@
-# RELEASE NOTES FOR KOHA 16.6.0
+# RELEASE NOTES FOR KOHA 16.11.0
 17 Nov 2016
 
 Koha is the first free and open source software library automation
@@ -8,31 +8,26 @@ website for the Koha project is:
 
 - [Koha Community](http://koha-community.org)
 
-Koha 16.6.0 can be downloaded from:
+Koha 16.11.0 can be downloaded from:
 
-- [Download](http://download.koha-community.org/koha-16.06.00.tar.gz)
+- [Download](http://download.koha-community.org/koha-16.11.00.tar.gz)
 
 Installation instructions can be found at:
 
 - [Koha Wiki](http://wiki.koha-community.org/wiki/Installation_Documentation)
 - OR in the INSTALL files that come in the tarball
 
-Koha 16.6.0 is a major release, that comes with many new features.
+Koha 16.11.0 is a major release, that comes with many new features.
 
 It includes 6 new features, 244 enhancements, 384 bugfixes.
 
-
-
 ## New features
 
-### Acquisitions
-
+- [[14695]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14695) Add ability to place multiple item holds on a given record per patron
+- [[3534]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=3534) Patron quick add form
 - [[5260]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=5260) Add option to send an order by e-mail to the acquisition module
-
 > It will be possible to send order information to the vendor by e-mail. For now this feature can be triggered manually with a button before closing the basket.
-The order e-mail is based on the acquisition claim feature, but uses a new notice template: ACQORDER.
-
-
+> The order e-mail is based on the acquisition claim feature, but uses a new notice template: ACQORDER.
 
 ### Cataloging
 
@@ -42,13 +37,8 @@ The order e-mail is based on the acquisition claim feature, but uses a new notic
 
 - [[14610]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14610) Add ability to place article requests in Koha
 
-### Hold requests
-
-- [[14695]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=14695) Add ability to place multiple item holds on a given record per patron
-
 ### Patrons
 
-- [[3534]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=3534) Patron quick add form
 - [[5670]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=5670) Housebound Readers Module
 
 ## Enhancements
@@ -1027,9 +1017,11 @@ The most up-to-date translations can be found at:
 
 ## Release Team
 
-The release team for Koha 16.6.0 is
+The release team for Koha 16.11.0 is
 
-- Release Manager: [](mailto:)
+- Release Manager:
+  - [Brendan Gallagher](mailto:brendan@bywatersolutions.com)
+  - [Kyle M Hall](mailto:kyle@bywatersolutions.com)
 - QA Manager: [Katrin Fischer](mailto:Katrin.Fischer@bsz-bw.de)
 - QA Team:
   - [Kyle Hall](mailto:kyle@bywatersolutions.com)
@@ -1049,7 +1041,7 @@ The release team for Koha 16.6.0 is
 - Documentation Manager: [Nicole C. Engard](mailto:nengard@gmail.com)
 - Translation Manager: [Bernardo Gonzalez Kriegel](mailto:bgkriegel@gmail.com)
 - Wiki curators: 
-  - [Brook](mailto:)
+  - [Brooke](mailto:)
   - [Thomas Dukleth](mailto:kohadevel@agogme.com)
 - Release Maintainers:
   - 16.05 -- [Frédéric Demians](mailto:f.demians@tamil.fr)
@@ -1059,7 +1051,7 @@ The release team for Koha 16.6.0 is
 ## Credits
 
 We thank the following libraries who are known to have sponsored
-new features in Koha 16.6.0:
+new features in Koha 16.11.0:
 
 - BULAC - http://www.bulac.fr/
 - ByWater Solutions
@@ -1078,7 +1070,7 @@ new features in Koha 16.6.0:
 - University of the Arts London
 - VOKAL
 
-We thank the following individuals who contributed patches to Koha 16.6.0.
+We thank the following individuals who contributed patches to Koha 16.11.0.
 
 - Marc (11)
 - Aleisha (19)
@@ -1154,7 +1146,7 @@ We thank the following individuals who contributed patches to Koha 16.6.0.
 - Jesse Weaver (9)
 
 We thank the following libraries, companies, and other institutions who contributed
-patches to Koha 16.6.0
+patches to Koha 16.11.0
 
 - abunchofthings.net (15)
 - ACPL (63)
@@ -1311,7 +1303,7 @@ version of Koha can be retrieved by checking out the master branch of:
 - [Koha Git Repository](git://git.koha-community.org/koha.git)
 
 The branch for this version of Koha and future bugfixes in this release
-line is (detached from origin-master).
+line is v16.11.x
 
 
 ## Bugs and feature requests
