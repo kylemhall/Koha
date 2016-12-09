@@ -95,6 +95,12 @@ sub siblings {
     );
 }
 
+sub FirstValidEmailAddress {
+    my ( $self ) = @_;
+
+    return $self->email || $self->emailpro || $self->B_email || undef;
+}
+
 =head3 type
 
 =cut

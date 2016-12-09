@@ -52,7 +52,7 @@ use Koha::Patron::Images;
 use Koha::SearchEngine;
 use Koha::SearchEngine::Search;
 use Koha::Patron::Modifications;
-use Koha::Borrowers;
+use Koha::Patrons;
 
 use Date::Calc qw(
   Today
@@ -676,7 +676,7 @@ $template->param(
     modifications             => Koha::Patron::Modifications->GetModifications({ borrowernumber => $borrowernumber }),
     override_high_holds       => $override_high_holds,
     nopermission              => scalar $query->param('nopermission'),
-    borrower                  => Koha::Borrowers->find( $borrowernumber ),
+    borrower                  => Koha::Patrons->find( $borrowernumber ),
 );
 
 output_html_with_http_headers $query, $cookie, $template->output;

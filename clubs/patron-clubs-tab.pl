@@ -24,7 +24,7 @@ use CGI;
 use C4::Auth;
 use C4::Output;
 
-use Koha::Borrowers;
+use Koha::Patrons;
 use Koha::Club::Enrollments;
 
 my $cgi = new CGI;
@@ -41,7 +41,7 @@ my ( $template, $loggedinuser, $cookie ) = get_template_and_user(
 
 my $borrowernumber = $cgi->param('borrowernumber');
 
-my $borrower = Koha::Borrowers->find($borrowernumber);
+my $borrower = Koha::Patrons->find($borrowernumber);
 
 my @enrollments = $borrower->GetClubEnrollments();
 my @clubs       = $borrower->GetEnrollableClubs();

@@ -43,6 +43,7 @@ use Koha::AuthUtils qw(hash_password);
 use Koha::Database;
 use Koha::Holds;
 use Koha::List::Patron;
+use Koha::Patrons;
 
 our (@ISA,@EXPORT,@EXPORT_OK,$debug);
 
@@ -1281,7 +1282,7 @@ addresses.
 sub GetFirstValidEmailAddress {
     my $borrowernumber = shift;
 
-    my $borrower = Koha::Database->new()->schema()->resultset('Borrower')->find( $borrowernumber );
+    my $borrower = Koha::Patrons->find( $borrowernumber );
 
     return $borrower->FirstValidEmailAddress();
 }
