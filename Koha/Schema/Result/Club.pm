@@ -32,7 +32,6 @@ __PACKAGE__->table("clubs");
 =head2 club_template_id
 
   data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 name
@@ -60,7 +59,6 @@ __PACKAGE__->table("clubs");
 =head2 branchcode
 
   data_type: 'varchar'
-  is_foreign_key: 1
   is_nullable: 1
   size: 11
 
@@ -83,7 +81,7 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "club_template_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  { data_type => "integer", is_nullable => 0 },
   "name",
   { data_type => "tinytext", is_nullable => 0 },
   "description",
@@ -93,7 +91,7 @@ __PACKAGE__->add_columns(
   "date_end",
   { data_type => "date", datetime_undef_if_invalid => 1, is_nullable => 1 },
   "branchcode",
-  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1, size => 11 },
+  { data_type => "varchar", is_nullable => 1, size => 11 },
   "date_created",
   {
     data_type => "timestamp",
@@ -121,76 +119,9 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 RELATIONS
 
-=head2 branchcode
-
-Type: belongs_to
-
-Related object: L<Koha::Schema::Result::Branch>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "branchcode",
-  "Koha::Schema::Result::Branch",
-  { branchcode => "branchcode" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "RESTRICT",
-    on_update     => "RESTRICT",
-  },
-);
-
-=head2 club_enrollments
-
-Type: has_many
-
-Related object: L<Koha::Schema::Result::ClubEnrollment>
-
-=cut
-
-__PACKAGE__->has_many(
-  "club_enrollments",
-  "Koha::Schema::Result::ClubEnrollment",
-  { "foreign.club_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 club_fields
-
-Type: has_many
-
-Related object: L<Koha::Schema::Result::ClubField>
-
-=cut
-
-__PACKAGE__->has_many(
-  "club_fields",
-  "Koha::Schema::Result::ClubField",
-  { "foreign.club_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 club_template
-
-Type: belongs_to
-
-Related object: L<Koha::Schema::Result::ClubTemplate>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "club_template",
-  "Koha::Schema::Result::ClubTemplate",
-  { id => "club_template_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-
-# Created by DBIx::Class::Schema::Loader v0.07040 @ 2015-01-12 09:56:17
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:nMwJy/qR8aWu12hQq4rORQ
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-12-09 12:13:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:ojcQ+zx2lH7Yz/IULdG+Aw
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

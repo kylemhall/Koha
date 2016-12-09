@@ -32,7 +32,6 @@ __PACKAGE__->table("club_template_enrollment_fields");
 =head2 club_template_id
 
   data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 name
@@ -57,7 +56,7 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "club_template_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  { data_type => "integer", is_nullable => 0 },
   "name",
   { data_type => "tinytext", is_nullable => 0 },
   "description",
@@ -78,41 +77,9 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 RELATIONS
 
-=head2 club_enrollment_fields
-
-Type: has_many
-
-Related object: L<Koha::Schema::Result::ClubEnrollmentField>
-
-=cut
-
-__PACKAGE__->has_many(
-  "club_enrollment_fields",
-  "Koha::Schema::Result::ClubEnrollmentField",
-  { "foreign.club_template_enrollment_field_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 club_template
-
-Type: belongs_to
-
-Related object: L<Koha::Schema::Result::ClubTemplate>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "club_template",
-  "Koha::Schema::Result::ClubTemplate",
-  { id => "club_template_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-
-# Created by DBIx::Class::Schema::Loader v0.07040 @ 2015-01-12 09:56:17
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:KGo2mEIAkTVYSPsOLoaBCg
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-12-09 12:13:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:tDekPBsJsagC5Q5upYHdSQ
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration

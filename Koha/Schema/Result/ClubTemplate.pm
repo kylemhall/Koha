@@ -54,7 +54,6 @@ __PACKAGE__->table("club_templates");
 =head2 branchcode
 
   data_type: 'varchar'
-  is_foreign_key: 1
   is_nullable: 1
   size: 10
 
@@ -91,7 +90,7 @@ __PACKAGE__->add_columns(
   "is_email_required",
   { data_type => "tinyint", default_value => 0, is_nullable => 0 },
   "branchcode",
-  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1, size => 10 },
+  { data_type => "varchar", is_nullable => 1, size => 10 },
   "date_created",
   {
     data_type => "timestamp",
@@ -121,75 +120,8 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 RELATIONS
 
-=head2 branchcode
-
-Type: belongs_to
-
-Related object: L<Koha::Schema::Result::Branch>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "branchcode",
-  "Koha::Schema::Result::Branch",
-  { branchcode => "branchcode" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "SET NULL",
-    on_update     => "CASCADE",
-  },
-);
-
-=head2 club_template_enrollment_fields
-
-Type: has_many
-
-Related object: L<Koha::Schema::Result::ClubTemplateEnrollmentField>
-
-=cut
-
-__PACKAGE__->has_many(
-  "club_template_enrollment_fields",
-  "Koha::Schema::Result::ClubTemplateEnrollmentField",
-  { "foreign.club_template_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 club_template_fields
-
-Type: has_many
-
-Related object: L<Koha::Schema::Result::ClubTemplateField>
-
-=cut
-
-__PACKAGE__->has_many(
-  "club_template_fields",
-  "Koha::Schema::Result::ClubTemplateField",
-  { "foreign.club_template_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-=head2 clubs
-
-Type: has_many
-
-Related object: L<Koha::Schema::Result::Club>
-
-=cut
-
-__PACKAGE__->has_many(
-  "clubs",
-  "Koha::Schema::Result::Club",
-  { "foreign.club_template_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-
-# Created by DBIx::Class::Schema::Loader v0.07040 @ 2015-01-12 09:56:17
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:j5aiACVUGzrdng4+jt6mfg
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-12-09 12:13:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:WTcq1oB5S8v/YrpLzTSB1g
 
 1;

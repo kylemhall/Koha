@@ -32,13 +32,11 @@ __PACKAGE__->table("club_enrollments");
 =head2 club_id
 
   data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 borrowernumber
 
   data_type: 'integer'
-  is_foreign_key: 1
   is_nullable: 0
 
 =head2 date_enrolled
@@ -70,7 +68,6 @@ __PACKAGE__->table("club_enrollments");
 =head2 branchcode
 
   data_type: 'varchar'
-  is_foreign_key: 1
   is_nullable: 1
   size: 11
 
@@ -80,9 +77,9 @@ __PACKAGE__->add_columns(
   "id",
   { data_type => "integer", is_auto_increment => 1, is_nullable => 0 },
   "club_id",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  { data_type => "integer", is_nullable => 0 },
   "borrowernumber",
-  { data_type => "integer", is_foreign_key => 1, is_nullable => 0 },
+  { data_type => "integer", is_nullable => 0 },
   "date_enrolled",
   {
     data_type => "timestamp",
@@ -110,7 +107,7 @@ __PACKAGE__->add_columns(
     is_nullable => 1,
   },
   "branchcode",
-  { data_type => "varchar", is_foreign_key => 1, is_nullable => 1, size => 11 },
+  { data_type => "varchar", is_nullable => 1, size => 11 },
 );
 
 =head1 PRIMARY KEY
@@ -125,76 +122,9 @@ __PACKAGE__->add_columns(
 
 __PACKAGE__->set_primary_key("id");
 
-=head1 RELATIONS
 
-=head2 borrowernumber
-
-Type: belongs_to
-
-Related object: L<Koha::Schema::Result::Borrower>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "borrowernumber",
-  "Koha::Schema::Result::Borrower",
-  { borrowernumber => "borrowernumber" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 branchcode
-
-Type: belongs_to
-
-Related object: L<Koha::Schema::Result::Branch>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "branchcode",
-  "Koha::Schema::Result::Branch",
-  { branchcode => "branchcode" },
-  {
-    is_deferrable => 1,
-    join_type     => "LEFT",
-    on_delete     => "SET NULL",
-    on_update     => "CASCADE",
-  },
-);
-
-=head2 club
-
-Type: belongs_to
-
-Related object: L<Koha::Schema::Result::Club>
-
-=cut
-
-__PACKAGE__->belongs_to(
-  "club",
-  "Koha::Schema::Result::Club",
-  { id => "club_id" },
-  { is_deferrable => 1, on_delete => "CASCADE", on_update => "CASCADE" },
-);
-
-=head2 club_enrollment_fields
-
-Type: has_many
-
-Related object: L<Koha::Schema::Result::ClubEnrollmentField>
-
-=cut
-
-__PACKAGE__->has_many(
-  "club_enrollment_fields",
-  "Koha::Schema::Result::ClubEnrollmentField",
-  { "foreign.club_enrollment_id" => "self.id" },
-  { cascade_copy => 0, cascade_delete => 0 },
-);
-
-
-# Created by DBIx::Class::Schema::Loader v0.07040 @ 2015-01-12 09:56:17
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:9ypc+smG/VlgtWW66PhvHQ
+# Created by DBIx::Class::Schema::Loader v0.07042 @ 2016-12-09 12:13:44
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:Astc0nLY3pGTMF56Jwy/wA
 
 
 # You can replace this text with custom content, and it will be preserved on regeneration
