@@ -1,4 +1,4 @@
-# RELEASE NOTES FOR KOHA 16.12.0
+# RELEASE NOTES FOR KOHA 17.05.00
 11 May 2017
 
 Koha is the first free and open source software library automation
@@ -8,16 +8,16 @@ website for the Koha project is:
 
 - [Koha Community](http://koha-community.org)
 
-Koha 16.12.0 can be downloaded from:
+Koha 17.05.00 can be downloaded from:
 
-- [Download](http://download.koha-community.org/koha-16.12.00.tar.gz)
+- [Download](http://download.koha-community.org/koha-17.05.000.tar.gz)
 
 Installation instructions can be found at:
 
 - [Koha Wiki](http://wiki.koha-community.org/wiki/Installation_Documentation)
 - OR in the INSTALL files that come in the tarball
 
-Koha 16.12.0 is a major release, that comes with many new features.
+Koha 17.05.00 is a major release, that comes with many new features.
 
 It includes 6 new features, 200 enhancements, 269 bugfixes.
 
@@ -525,7 +525,7 @@ The option to integrate LDAP via "auth by password" has been removed. Please upd
 
 ### Installation and upgrade (web-based installer)
 
-- [[18368]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=18368) DBversion 16.12.00.022 not set by updatedatabase.pl
+- [[18368]](http://bugs.koha-community.org/bugzilla3/show_bug.cgi?id=18368) DBversion 17.05.000.022 not set by updatedatabase.pl
 
 ### Label/patron card printing
 
@@ -966,7 +966,7 @@ The most up-to-date translations can be found at:
 
 ## Release Team
 
-The release team for Koha 16.12.0 is
+The release team for Koha 17.05.00 is
 
 - Release Manager: [](mailto:)
 - QA Manager: [Katrin Fischer](mailto:Katrin.Fischer@bsz-bw.de)
@@ -998,7 +998,7 @@ The release team for Koha 16.12.0 is
 ## Credits
 
 We thank the following libraries who are known to have sponsored
-new features in Koha 16.12.0:
+new features in Koha 17.05.00:
 
 - ByWater Solutions
 - Catalyst IT
@@ -1008,7 +1008,7 @@ new features in Koha 16.12.0:
 - Universidad Nacional de Cordoba
 - University of the Arts London
 
-We thank the following individuals who contributed patches to Koha 16.12.0.
+We thank the following individuals who contributed patches to Koha 17.05.00.
 
 - = (1)
 - Aleisha (1)
@@ -1090,7 +1090,7 @@ We thank the following individuals who contributed patches to Koha 16.12.0.
 - Baptiste Wojtkowski (8)
 
 We thank the following libraries, companies, and other institutions who contributed
-patches to Koha 16.12.0
+patches to Koha 17.05.00
 
 - 2017 (0)
 - abunchofthings.net (3)
