@@ -1246,7 +1246,7 @@ version of Koha can be retrieved by checking out the master branch of:
 - [Koha Git Repository](git://git.koha-community.org/koha.git)
 
 The branch for this version of Koha and future bugfixes in this release
-line is (detached from origin-master).
+line is 17.05.x
 
 
 ## Bugs and feature requests
