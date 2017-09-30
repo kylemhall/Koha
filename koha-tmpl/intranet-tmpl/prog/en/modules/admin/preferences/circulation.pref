@@ -488,6 +488,14 @@ Circulation:
             - the restriction periods.
     Holds Policy:
         -
+            - In the staff client, split the holds queue into separate tables by
+            - pref: HoldsSplitQueue
+              choices:
+                  nothing: nothing
+                  branch: "pickup library"
+                  itemtype: "hold itemtype"
+                  branch_itemtype: "pickup library & itemtype"
+        -
             - pref: AllowHoldItemTypeSelection
               choices:
                   yes: Allow
