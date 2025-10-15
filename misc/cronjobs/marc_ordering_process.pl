@@ -91,6 +91,8 @@ if ( scalar(@accounts) == 0 ) {
     print "No accounts found - you must create a MARC order account for this cronjob to run\n" if $verbose;
 }
 
+my $valid_file_extensions = qr/\.(mrc|marcxml|mrk)/i;
+
 foreach my $acct (@accounts) {
     if ($verbose) {
         say sprintf "Starting MARC ordering process for %s", $acct->vendor->name;
@@ -98,8 +100,50 @@ foreach my $acct (@accounts) {
     }
 
     my $working_dir = $acct->download_directory;
+
+    my $file_transport = $acct->file_transport_id ? Koha::File::Transports->find( $acct->file_transport_id ) : undef;
+    if ($file_transport) {
+        if ( $file_transport->connect() ) {
+            my $download_dir = $file_transport->download_directory;
+
+            my $success = $download_dir ? $file_transport->change_directory($download_dir) : 1;
+            if ( $download_dir && !$success ) {
+                warn "Failed to change to download directory: $download_dir";
+            } else {
+
+                # Get file list
+                my $file_list = $file_transport->list_files();
+                if ($file_list) {
+
+                    # Process files matching our criteria
+                    foreach my $file ( @{$file_list} ) {
+                        my $filename = $file->{filename};
+
+                        if ( $filename =~ $valid_file_extensions ) {
+
+                            my $local_file = "$working_dir/$filename";
+
+                            # Download the file
+                            if ( $file_transport->download_file( $filename, $local_file ) ) {
+                                $file_transport->rename_file( $filename, "$filename.dl" );
+                            } else {
+                                warn "Failed to download file: $filename";
+                            }
+                        }
+                    }
+
+                } else {
+                    warn "Failed to get file list from transport";
+                }
+
+            }
+        } else {
+            warn "Failed to connect to file transport: " . $file_transport->id;
+        }
+    }
+
     opendir my $dir, $working_dir or die "Can't open filepath";
-    my @files = grep { /\.(mrc|marcxml|mrk)/i } readdir $dir;
+    my @files = grep { /$valid_file_extensions/ } readdir $dir;
     closedir $dir;
     print "No new files found\n" if scalar(@files) == 0;
 
