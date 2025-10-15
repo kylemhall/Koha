@@ -17,8 +17,10 @@
 
 use Modern::Perl;
 
-use Test::More tests => 4;
+use Test::More tests => 5;
 use Test::NoWarnings;
+use File::Temp qw( tempdir );
+use File::Spec;
 
 use Koha::Database;
 use Koha::File::Transports;
@@ -50,7 +52,7 @@ subtest 'Polymorphic object creation' => sub {
         'SFTP transport should be polymorphic Koha::File::Transport::SFTP object'
     );
 
-    can_ok( $sftp_transport, '_write_key_file' );
+    can_ok( $sftp_transport, qw( _write_key_file delete_file ) );
 
     # Test FTP transport polymorphism
     my $ftp_transport = $builder->build_object(
@@ -69,7 +71,7 @@ subtest 'Polymorphic object creation' => sub {
         'FTP transport should be polymorphic Koha::File::Transport::FTP object'
     );
 
-    can_ok( $ftp_transport, 'connect' );
+    can_ok( $ftp_transport, qw( connect delete_file ) );
 
     # Test Local transport polymorphism
     my $local_transport = $builder->build_object(
@@ -88,7 +90,7 @@ subtest 'Polymorphic object creation' => sub {
         'Local transport should be polymorphic Koha::File::Transport::Local object'
     );
 
-    can_ok( $local_transport, 'rename_file' );
+    can_ok( $local_transport, qw( rename_file delete_file ) );
 
     $schema->storage->txn_rollback;
 };
@@ -133,6 +135,50 @@ subtest 'search() tests' => sub {
         $refs{ftp}, 'Koha::File::Transport::FTP',
         'FTP object from search should be polymorphic'
     );
+
+    $schema->storage->txn_rollback;
+};
+
+subtest 'delete_file() local transport' => sub {
+    plan tests => 6;
+
+    $schema->storage->txn_begin;
+
+    my $dir       = tempdir( CLEANUP => 1 );
+    my $file_name = 'test_delete.txt';
+    my $file_path = File::Spec->catfile( $dir, $file_name );
+
+    open my $fh, '>', $file_path or die "Failed to create test file: $!";
+    print {$fh} "test\n";
+    close $fh;
+
+    my $local_transport = $builder->build_object(
+        {
+            class => 'Koha::File::Transports',
+            value => {
+                transport          => 'local',
+                name               => 'Test Local Delete',
+                download_directory => $dir,
+                upload_directory   => $dir,
+            }
+        }
+    );
+
+    isa_ok( $local_transport, 'Koha::File::Transport::Local' );
+
+    my $result = $local_transport->delete_file($file_name);
+    ok( $result, 'delete_file returns true on success' );
+    ok( !-e $file_path, 'File removed from filesystem' );
+
+    my @messages = @{ $local_transport->object_messages };
+    my @success_messages = grep { $_->message eq 'delete' && $_->type eq 'success' } @messages;
+    is( scalar @success_messages, 1, 'Success message recorded' );
+
+    my $missing = $local_transport->delete_file('nonexistent.txt');
+    ok( !defined $missing, 'delete_file returns undef for missing file' );
+
+    my @error_messages = grep { $_->message eq 'delete' && $_->type eq 'error' } @{ $local_transport->object_messages };
+    ok( @error_messages, 'Error message recorded for missing file' );
 
     $schema->storage->txn_rollback;
 };

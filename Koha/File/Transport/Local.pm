@@ -340,6 +340,68 @@ sub list_files {
     return \@files;
 }
 
+=head3 delete_file
+
+    my $success = $server->delete_file($remote_file);
+
+Deletes a file in the current directory.
+
+Returns true on success or undefined on failure.
+
+=cut
+
+sub delete_file {
+    my ( $self, $remote_file ) = @_;
+    my $operation = 'delete';
+
+    my $base_directory = $self->{current_directory}
+        || $self->download_directory
+        || $self->upload_directory
+        || '.';
+
+    my $target_path = File::Spec->file_name_is_absolute($remote_file)
+        ? $remote_file
+        : File::Spec->catfile( $base_directory, $remote_file );
+
+    unless ( -f $target_path ) {
+        $self->add_message(
+            {
+                message => $operation,
+                type    => 'error',
+                payload => {
+                    error => "File not found: $target_path",
+                    path  => $target_path
+                }
+            }
+        );
+        return;
+    }
+
+    unless ( unlink $target_path ) {
+        $self->add_message(
+            {
+                message => $operation,
+                type    => 'error',
+                payload => {
+                    error => $!,
+                    path  => $target_path
+                }
+            }
+        );
+        return;
+    }
+
+    $self->add_message(
+        {
+            message => $operation,
+            type    => 'success',
+            payload => { path => $target_path }
+        }
+    );
+
+    return 1;
+}
+
 =head3 rename_file
 
     my $success = $server->rename_file($old_name, $new_name);

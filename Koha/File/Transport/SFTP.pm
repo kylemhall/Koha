@@ -199,6 +199,39 @@ sub list_files {
     return $file_list;
 }
 
+=head3 delete_file
+
+    my $success = $transport->delete_file($filename);
+
+Deletes a file on the server connection.
+
+Returns true on success or undefined on failure.
+
+=cut
+
+sub delete_file {
+    my ( $self, $remote_file ) = @_;
+    my $operation = 'delete';
+
+    $self->{connection}->remove($remote_file)
+        or return $self->_abort_operation( $operation, $remote_file );
+
+    $self->add_message(
+        {
+            message => $operation,
+            type    => 'success',
+            payload => {
+                status => $self->{connection}->status,
+                error  => $self->{connection}->error,
+                path   => $self->{connection}->cwd,
+                detail => $remote_file
+            }
+        }
+    );
+
+    return 1;
+}
+
 =head3 rename_file
 
     my $success = $server->rename_file($old_name, $new_name);

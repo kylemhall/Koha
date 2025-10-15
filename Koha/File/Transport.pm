@@ -251,6 +251,19 @@ sub list_files {
     die "Subclass must implement list_files";
 }
 
+=head3 delete_file
+
+    my $success = $transport->delete_file($filename);
+
+Method for deleting a file from the current file server
+
+=cut
+
+sub delete_file {
+    my ( $self, $remote_file ) = @_;
+    die "Subclass must implement delete_file";
+}
+
 =head3 rename_file
 
     my $success = $transport->rename_file($old_name, $new_name);
